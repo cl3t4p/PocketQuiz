@@ -371,7 +371,7 @@
 
       <div class="card__body">
         <span class="type-label" id="typeLabel" hidden></span>
-        <pre class="prompt" id="prompt"></pre>
+        <div class="prompt" id="prompt"></div>
         <div class="diagram" id="diagram" hidden></div>
         <div class="options" id="options" role="group" aria-label="Answer options"></div>
 
@@ -433,6 +433,30 @@
     ]
   }
   </script>
+
+  <!--
+    MathJax renders the logic in question prompts. It loads from a CDN, so it
+    only works online. If the network is unavailable (e.g. opened from file://
+    with no internet) `__mathFailed` is set and the app falls back to the plain
+    monospace prompt rendering — nothing breaks, the math just isn't typeset.
+  -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [["$", "$"]] },
+      svg: { fontCache: "global" },
+      startup: {
+        typeset: false, // we typeset prompts ourselves, per slide
+        ready: () => {
+          MathJax.startup.defaultReady();
+          window.__mathReady = true;
+          if (typeof window.__onMathReady === "function") window.__onMathReady();
+        },
+      },
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    onerror="window.__mathFailed = true;"></script>
 
   <script>
     "use strict";
@@ -517,6 +541,99 @@
       );
     }
 
+    // ---------------------------------------------------------- prompt → TeX
+
+    /* Prompts are authored in Unicode logic notation (M ⊨ AG AF ¬p, GFq,
+     * E(p U q), …) with formulas set off by 2+ spaces / line breaks. We turn
+     * the formula parts into LaTeX so MathJax can typeset them, while leaving
+     * the prose untouched. This is rendering-only: the JSON is never modified,
+     * and an unrecognised formula simply stays as plain text. */
+
+    const SYM = {
+      "⊨": "\\models ", "⊭": "\\not\\models ",
+      "¬": "\\neg ", "∧": "\\land ", "∨": "\\lor ",
+      "→": "\\rightarrow ", "↔": "\\leftrightarrow ", "⇒": "\\Rightarrow ", "⇔": "\\Leftrightarrow ",
+      "≡": "\\equiv ", "≠": "\\neq ", "≤": "\\le ", "≥": "\\ge ",
+      "⊤": "\\top ", "⊥": "\\bot ", "◯": "\\bigcirc ",
+      "∀": "\\forall ", "∃": "\\exists ",
+      "ω": "\\omega ", "φ": "\\varphi ", "ψ": "\\psi ", "μ": "\\mu ", "ν": "\\nu ",
+      "∈": "\\in ", "∉": "\\notin ", "∅": "\\emptyset ",
+      "∪": "\\cup ", "∩": "\\cap ", "⊆": "\\subseteq ", "⊑": "\\sqsubseteq ",
+      "⟨": "\\langle ", "⟩": "\\rangle ", "⋅": "\\cdot ", "·": "\\cdot ",
+    };
+    const SYM_CHARS = Object.keys(SYM).join("");
+    const SYM_RE = new RegExp("[" + SYM_CHARS + "]", "g");
+    const HAS_SYM_RE = new RegExp("[" + SYM_CHARS + "]");
+
+    // Letters allowed in a symbol-free formula: operators/quantifiers (upper),
+    // the model name M, and atom/string letters (lower). Anything else (e.g. a
+    // prose word like "true") disqualifies the segment from being math.
+    const FORMULA_LETTER = /^[AEGFXURWMpqrstabcd]$/;
+    const OP_RUN = /[AEGFXURW]+/g; // temporal/path operators → upright \mathsf
+
+    function escapeHtml(s) {
+      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function looksLikeFormula(core) {
+      let sawLetter = false;
+      for (const ch of core) {
+        if (/[A-Za-z]/.test(ch)) {
+          sawLetter = true;
+          if (!FORMULA_LETTER.test(ch)) return false;
+        }
+      }
+      return sawLetter;
+    }
+
+    function formulaToTex(core) {
+      let s = core;
+      s = s.replace(/→\s*\{([^}]*)\}/g, "\\xrightarrow{$1}"); // labelled transitions
+      s = s.replace(SYM_RE, (m) => SYM[m]);                    // remaining logic symbols
+      s = s.replace(/_{2,}/g, "\\_\\_");                        // fill-in-the-blank ___
+      s = s.replace(/([A-Za-z])([0-9]+)/g, "$1_{$2}");          // s0 → s_{0}
+      s = s.replace(OP_RUN, (m) => "\\mathsf{" + m + "}");      // AG, AF, U … upright
+      return s;
+    }
+
+    function renderSegment(seg) {
+      // peel trailing punctuation so "FGp ?" → core "FGp" + tail " ?"
+      const m = seg.match(/^(.*?)(\s*[?.,;:!]+)\s*$/);
+      let core = seg, tail = "";
+      if (m && m[1].length) { core = m[1]; tail = m[2]; }
+
+      const isMath = HAS_SYM_RE.test(core) || looksLikeFormula(core);
+      if (!isMath) return escapeHtml(seg);
+      return "$" + formulaToTex(core) + "$" + escapeHtml(tail);
+    }
+
+    /** Convert a prompt string into HTML with $…$ math spans for MathJax. */
+    function promptToHtml(text) {
+      return text.split("\n").map((line) =>
+        line.split(/( {2,})/).map((part) => {
+          if (/^ {2,}$/.test(part) || part === "") return part; // keep gaps as-is
+          return renderSegment(part);
+        }).join("")
+      ).join("\n");
+    }
+
+    /** Render a prompt: typeset math when MathJax is up, else plain text. */
+    function renderPrompt(text) {
+      if (window.__mathReady && !window.__mathFailed && window.MathJax) {
+        try {
+          el.prompt.innerHTML = promptToHtml(text);
+          if (MathJax.typesetClear) MathJax.typesetClear([el.prompt]);
+          MathJax.typesetPromise([el.prompt]).catch(() => {
+            el.prompt.textContent = text;
+          });
+          return;
+        } catch (e) {
+          /* fall through to plain text */
+        }
+      }
+      el.prompt.textContent = text;
+    }
+
     // ---------------------------------------------------------------- load
 
     /** Parse a JSON string, validate the contract, and start the quiz. */
@@ -597,8 +714,8 @@
         el.typeLabel.hidden = true;
       }
 
-      // prompt
-      el.prompt.textContent = q.prompt;
+      // prompt (logic typeset with MathJax when available)
+      renderPrompt(q.prompt);
 
       // diagram (trusted inline SVG)
       if (typeof q.diagramSvg === "string" && q.diagramSvg.trim() !== "") {
@@ -703,6 +820,12 @@
     el.sampleBtn.addEventListener("click", () => {
       loadFromText(el.sampleData.textContent, "sample");
     });
+
+    // If MathJax finishes loading while a slide is already on screen, re-render
+    // the current prompt so its formulas get typeset.
+    window.__onMathReady = () => {
+      if (!el.quiz.hidden) render();
+    };
 
     el.loadBtn.addEventListener("click", backToLoader);
     el.prevBtn.addEventListener("click", () => go(-1));
