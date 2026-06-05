@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Practice</title>
+  <style>
+    :root {
+      --bg-grad-a: #e7ecf5;
+      --bg-grad-b: #f4f1ec;
+      --card: #ffffff;
+      --text: #1d2330;
+      --muted: #6b7280;
+      --border: #e1e5ee;
+      --accent: #4f6bed;
+      --accent-weak: #eef1fe;
+      --correct: #1f9d57;
+      --correct-weak: #e6f6ec;
+      --wrong: #d8413a;
+      --wrong-weak: #fbe9e8;
+      --mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --shadow: 0 10px 40px rgba(30, 40, 80, 0.12);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-grad-a: #141821;
+        --bg-grad-b: #1a1614;
+        --card: #1b1f29;
+        --text: #e7eaf0;
+        --muted: #9aa3b2;
+        --border: #2a3040;
+        --accent: #7d93f6;
+        --accent-weak: #232a44;
+        --correct: #43c980;
+        --correct-weak: #16321f;
+        --wrong: #f0716a;
+        --wrong-weak: #3a1d1b;
+        --shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg-grad-a), var(--bg-grad-b));
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: clamp(12px, 4vw, 48px);
+      line-height: 1.5;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    /* ---------- loader screen ---------- */
+    .loader {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 40px 28px;
+      text-align: center;
+      border: 2px dashed transparent;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .loader.is-dragging {
+      border-color: var(--accent);
+      background: var(--accent-weak);
+    }
+    .loader__title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 0 6px;
+    }
+    .loader__hint {
+      color: var(--muted);
+      margin: 0 0 24px;
+      font-size: 0.95rem;
+    }
+    .loader__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .file-btn { position: relative; overflow: hidden; }
+    .file-btn input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .loader__drop {
+      margin-top: 22px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .loader__error {
+      margin: 20px 0 0;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: var(--wrong-weak);
+      color: var(--wrong);
+      font-size: 0.9rem;
+      text-align: left;
+      white-space: pre-wrap;
+    }
+
+    /* ---------- card ---------- */
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card__head {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .head__top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .title {
+      font-size: 1.1rem;
+      font-weight: 650;
+      margin: 0;
+    }
+    .counter {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .progress {
+      margin-top: 12px;
+      height: 6px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress__bar {
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      border-radius: 99px;
+      transition: width 0.25s ease;
+    }
+
+    .head__meta {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .score {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .head__btns { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    /* ---------- body ---------- */
+    .card__body {
+      padding: 24px;
+      flex: 1;
+    }
+
+    .type-label {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-weak);
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    .prompt {
+      font-family: var(--mono);
+      font-size: clamp(1rem, 1rem + 0.5vw, 1.3rem);
+      line-height: 1.6;
+      margin: 0 0 18px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--text);
+    }
+
+    .diagram {
+      margin: 0 0 20px;
+      padding: 14px;
+      background: var(--accent-weak);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+      overflow-x: auto;
+    }
+    .diagram svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ---------- options ---------- */
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+    .option {
+      font-family: var(--mono);
+      font-size: 1rem;
+      text-align: left;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, transform 0.05s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .option:hover:not(:disabled) {
+      border-color: var(--accent);
+      background: var(--accent-weak);
+    }
+    .option:active:not(:disabled) { transform: translateY(1px); }
+    .option:disabled { cursor: default; }
+
+    .option__mark {
+      margin-left: auto;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .option--correct {
+      border-color: var(--correct);
+      background: var(--correct-weak);
+      color: var(--correct);
+    }
+    .option--wrong {
+      border-color: var(--wrong);
+      background: var(--wrong-weak);
+      color: var(--wrong);
+    }
+
+    /* ---------- solution ---------- */
+    .solution {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-weak);
+      border-radius: 0 12px 12px 0;
+    }
+    .solution__title {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+    .solution__answer {
+      margin: 0 0 8px;
+      font-family: var(--mono);
+      font-weight: 650;
+    }
+    .solution__explanation {
+      margin: 0;
+      white-space: pre-wrap;
+      color: var(--text);
+    }
+
+    /* ---------- footer ---------- */
+    .card__foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 24px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ---------- buttons ---------- */
+    .btn {
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      font-weight: 550;
+      padding: 10px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, opacity 0.15s;
+    }
+    .btn:hover:not(:disabled) { border-color: var(--accent); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn--primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .btn--primary:hover:not(:disabled) { filter: brightness(1.05); }
+    .btn--ghost { border-color: transparent; color: var(--muted); padding: 6px 10px; }
+    .btn--ghost:hover:not(:disabled) { color: var(--accent); border-color: var(--border); }
+    .btn--sm { font-size: 0.82rem; }
+
+    @media (max-width: 480px) {
+      .card__body { padding: 18px; }
+      .card__head { padding: 16px 18px 12px; }
+      .card__foot { padding: 14px 18px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app" id="app">
+    <!-- Loader: pick or drop a questions JSON file -->
+    <section class="loader" id="loader">
+      <h1 class="loader__title">Quiz Practice</h1>
+      <p class="loader__hint">Load a questions JSON file to begin.</p>
+      <div class="loader__actions">
+        <label class="btn btn--primary file-btn">
+          Choose JSON file…
+          <input type="file" id="fileInput" accept=".json,application/json" />
+        </label>
+        <button class="btn btn--ghost" id="sampleBtn" type="button">Use sample questions</button>
+      </div>
+      <p class="loader__drop">…or drag &amp; drop the file anywhere on this card.</p>
+      <p class="loader__error" id="loaderError" hidden></p>
+    </section>
+
+    <!-- Quiz UI (hidden until loaded) -->
+    <section class="card" id="quiz" hidden>
+      <header class="card__head">
+        <div class="head__top">
+          <h1 class="title" id="quizTitle">Quiz</h1>
+          <span class="counter" id="counter">0 / 0</span>
+        </div>
+        <div class="progress" aria-hidden="true">
+          <div class="progress__bar" id="progressBar"></div>
+        </div>
+        <div class="head__meta">
+          <span class="score" id="score">Score: 0 / 0 answered correct</span>
+          <div class="head__btns">
+            <button class="btn btn--ghost btn--sm" id="loadBtn" type="button">⤓ Load file</button>
+            <button class="btn btn--ghost btn--sm" id="restartBtn" type="button">↻ Restart / new 50</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="card__body">
+        <span class="type-label" id="typeLabel" hidden></span>
+        <pre class="prompt" id="prompt"></pre>
+        <div class="diagram" id="diagram" hidden></div>
+        <div class="options" id="options" role="group" aria-label="Answer options"></div>
+
+        <div class="solution" id="solution" hidden>
+          <h2 class="solution__title">Solution</h2>
+          <p class="solution__answer" id="solutionAnswer"></p>
+          <p class="solution__explanation" id="solutionExplanation"></p>
+        </div>
+      </div>
+
+      <footer class="card__foot">
+        <button class="btn" id="prevBtn" type="button">← Previous</button>
+        <button class="btn btn--primary" id="nextBtn" type="button">Next →</button>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Sample questions, used by the "Use sample questions" button. -->
+  <script id="sampleData" type="application/json">
+  {
+    "meta": { "title": "CTL/LTL Automata Practice", "count": 4 },
+    "questions": [
+      {
+        "id": "q001",
+        "type": "ctl_model",
+        "prompt": "Is  M ⊨ AG AF ¬p  true or false?\n\nM:  s0 →{p} s1,   s1 →{p} s1  (self-loop)",
+        "diagramSvg": "<svg viewBox='0 0 300 140' xmlns='http://www.w3.org/2000/svg' font-family='monospace' font-size='14'><defs><marker id='a' markerWidth='10' markerHeight='10' refX='8' refY='3' orient='auto'><path d='M0,0 L8,3 L0,6 Z' fill='#4f6bed'/></marker></defs><circle cx='70' cy='70' r='26' fill='none' stroke='#4f6bed' stroke-width='2'/><text x='70' y='66' text-anchor='middle'>s0</text><text x='70' y='82' text-anchor='middle' fill='#1f9d57'>p</text><circle cx='210' cy='70' r='26' fill='none' stroke='#4f6bed' stroke-width='2'/><text x='210' y='66' text-anchor='middle'>s1</text><text x='210' y='82' text-anchor='middle' fill='#1f9d57'>p</text><line x1='98' y1='70' x2='182' y2='70' stroke='#4f6bed' stroke-width='2' marker-end='url(#a)'/><path d='M232,52 A24,24 0 1 1 232,88' fill='none' stroke='#4f6bed' stroke-width='2' marker-end='url(#a)'/></svg>",
+        "options": ["True", "False"],
+        "correctIndex": 1,
+        "explanation": "False. There is a path s0→s1→(s1)^ω where p holds forever, so AF ¬p fails on that path, hence AG AF ¬p does not hold at s0."
+      },
+      {
+        "id": "q002",
+        "type": "ltl_equiv",
+        "prompt": "Are these LTL formulas equivalent?\n\n    G F p   ≡   F G p",
+        "diagramSvg": null,
+        "options": ["Yes", "No"],
+        "correctIndex": 1,
+        "explanation": "No. G F p means \"infinitely often p\"; F G p means \"eventually always p\". F G p implies G F p but not vice versa (e.g. p true at every even step only)."
+      },
+      {
+        "id": "q003",
+        "type": "ctl_operator",
+        "prompt": "Which operator pair are duals?\n\n    AX φ   ≡   ¬ __ ¬φ",
+        "diagramSvg": null,
+        "options": ["EX", "AX", "EF", "EG"],
+        "correctIndex": 0,
+        "explanation": "EX. AX φ ≡ ¬ EX ¬φ: 'all successors satisfy φ' is the negation of 'some successor satisfies ¬φ'."
+      },
+      {
+        "id": "q004",
+        "type": "automata",
+        "prompt": "Does this NFA accept the string  a b a ?\n\nStart q0; accepting q2.",
+        "diagramSvg": "<svg viewBox='0 0 360 120' xmlns='http://www.w3.org/2000/svg' font-family='monospace' font-size='14'><defs><marker id='b' markerWidth='10' markerHeight='10' refX='8' refY='3' orient='auto'><path d='M0,0 L8,3 L0,6 Z' fill='#4f6bed'/></marker></defs><circle cx='50' cy='60' r='22' fill='none' stroke='#4f6bed' stroke-width='2'/><text x='50' y='65' text-anchor='middle'>q0</text><circle cx='180' cy='60' r='22' fill='none' stroke='#4f6bed' stroke-width='2'/><text x='180' y='65' text-anchor='middle'>q1</text><circle cx='310' cy='60' r='22' fill='none' stroke='#4f6bed' stroke-width='2'/><circle cx='310' cy='60' r='17' fill='none' stroke='#4f6bed' stroke-width='1.5'/><text x='310' y='65' text-anchor='middle'>q2</text><line x1='72' y1='60' x2='158' y2='60' stroke='#4f6bed' stroke-width='2' marker-end='url(#b)'/><text x='115' y='52' text-anchor='middle'>a</text><line x1='202' y1='60' x2='288' y2='60' stroke='#4f6bed' stroke-width='2' marker-end='url(#b)'/><text x='245' y='52' text-anchor='middle'>b</text><path d='M298,44 A24,24 0 1 0 322,44' fill='none' stroke='#4f6bed' stroke-width='2' marker-end='url(#b)'/><text x='310' y='8' text-anchor='middle'>a</text></svg>",
+        "options": ["Accepts", "Rejects"],
+        "correctIndex": 0,
+        "explanation": "Accepts. Run: q0 --a--> q1 --b--> q2 --a--> q2 (self-loop on a). Ends in accepting state q2."
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    "use strict";
+
+    /* ------------------------------------------------------------------ *
+     * Single-file JSON-driven slideshow quiz.
+     * Questions come from a file the user picks/drops (or the embedded
+     * sample). No fetch, so this runs straight from file://. The browser
+     * does no quiz logic beyond rendering fields and comparing the clicked
+     * option index to the stored `correctIndex`.
+     * ------------------------------------------------------------------ */
+
+    const MAX_QUESTIONS = 50;
+
+    // ---- DOM refs ----
+    const el = {
+      loader: document.getElementById("loader"),
+      fileInput: document.getElementById("fileInput"),
+      sampleBtn: document.getElementById("sampleBtn"),
+      loaderError: document.getElementById("loaderError"),
+      sampleData: document.getElementById("sampleData"),
+      quiz: document.getElementById("quiz"),
+      title: document.getElementById("quizTitle"),
+      counter: document.getElementById("counter"),
+      progressBar: document.getElementById("progressBar"),
+      score: document.getElementById("score"),
+      loadBtn: document.getElementById("loadBtn"),
+      restartBtn: document.getElementById("restartBtn"),
+      typeLabel: document.getElementById("typeLabel"),
+      prompt: document.getElementById("prompt"),
+      diagram: document.getElementById("diagram"),
+      options: document.getElementById("options"),
+      solution: document.getElementById("solution"),
+      solutionAnswer: document.getElementById("solutionAnswer"),
+      solutionExplanation: document.getElementById("solutionExplanation"),
+      prevBtn: document.getElementById("prevBtn"),
+      nextBtn: document.getElementById("nextBtn"),
+    };
+
+    // ---- App state ----
+    const state = {
+      meta: {},
+      pool: [],        // full validated question list
+      deck: [],        // the active (shuffled, capped) slides
+      answers: [],     // per-slide: { chosen: number, correct: boolean } | null
+      current: 0,
+    };
+
+    // ---------------------------------------------------------------- helpers
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function showLoaderError(message) {
+      el.loaderError.textContent = message;
+      el.loaderError.hidden = false;
+    }
+    function clearLoaderError() {
+      el.loaderError.hidden = true;
+      el.loaderError.textContent = "";
+    }
+
+    /** Validate one question object against the contract. Returns true if usable. */
+    function isValidQuestion(q) {
+      return (
+        q &&
+        typeof q === "object" &&
+        typeof q.prompt === "string" &&
+        Array.isArray(q.options) &&
+        q.options.length >= 2 &&
+        q.options.length <= 4 &&
+        q.options.every((o) => typeof o === "string") &&
+        Number.isInteger(q.correctIndex) &&
+        q.correctIndex >= 0 &&
+        q.correctIndex < q.options.length
+      );
+    }
+
+    // ---------------------------------------------------------------- load
+
+    /** Parse a JSON string, validate the contract, and start the quiz. */
+    function loadFromText(text, sourceLabel) {
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (err) {
+        showLoaderError(`That file isn't valid JSON.\n${err.message}`);
+        return;
+      }
+
+      if (!data || !Array.isArray(data.questions)) {
+        showLoaderError('The quiz file is malformed. Expected an object with a "questions" array.');
+        return;
+      }
+
+      const valid = data.questions.filter(isValidQuestion);
+      if (valid.length === 0) {
+        showLoaderError(
+          "No valid questions found. Every question needs a prompt, 2–4 string options, and a correctIndex within range."
+        );
+        return;
+      }
+
+      state.meta = data.meta && typeof data.meta === "object" ? data.meta : {};
+      state.pool = valid;
+
+      clearLoaderError();
+      el.loader.hidden = true;
+      el.quiz.hidden = false;
+      startNewDeck();
+    }
+
+    function loadFromFile(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => loadFromText(String(reader.result), file.name);
+      reader.onerror = () => showLoaderError(`Couldn't read ${file.name}.`);
+      reader.readAsText(file);
+    }
+
+    // ---------------------------------------------------------------- deck
+
+    function startNewDeck() {
+      state.deck = shuffle(state.pool).slice(0, MAX_QUESTIONS);
+      state.answers = new Array(state.deck.length).fill(null);
+      state.current = 0;
+      el.title.textContent = state.meta.title || "Quiz Practice";
+      render();
+    }
+
+    function scoreCount() {
+      return state.answers.filter((a) => a && a.correct).length;
+    }
+    function answeredCount() {
+      return state.answers.filter((a) => a !== null).length;
+    }
+
+    // ---------------------------------------------------------------- render
+
+    function render() {
+      const total = state.deck.length;
+      const i = state.current;
+      const q = state.deck[i];
+      const answer = state.answers[i];
+
+      // header
+      el.counter.textContent = `${i + 1} / ${total}`;
+      el.progressBar.style.width = `${((i + 1) / total) * 100}%`;
+      el.score.textContent = `Score: ${scoreCount()} / ${answeredCount()} answered correct`;
+
+      // type label
+      if (q.type && typeof q.type === "string") {
+        el.typeLabel.textContent = q.type;
+        el.typeLabel.hidden = false;
+      } else {
+        el.typeLabel.hidden = true;
+      }
+
+      // prompt
+      el.prompt.textContent = q.prompt;
+
+      // diagram (trusted inline SVG)
+      if (typeof q.diagramSvg === "string" && q.diagramSvg.trim() !== "") {
+        el.diagram.innerHTML = q.diagramSvg;
+        el.diagram.hidden = false;
+      } else {
+        el.diagram.innerHTML = "";
+        el.diagram.hidden = true;
+      }
+
+      // options
+      renderOptions(q, answer);
+
+      // solution
+      if (answer) {
+        revealSolution(q);
+      } else {
+        el.solution.hidden = true;
+      }
+
+      // nav
+      el.prevBtn.disabled = i === 0;
+      el.nextBtn.disabled = i === total - 1;
+      el.nextBtn.textContent = i === total - 1 ? "End" : "Next →";
+    }
+
+    function renderOptions(q, answer) {
+      el.options.innerHTML = "";
+      q.options.forEach((text, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option";
+
+        const label = document.createElement("span");
+        label.className = "option__text";
+        label.textContent = text;
+        btn.appendChild(label);
+
+        if (answer) {
+          btn.disabled = true;
+          if (idx === q.correctIndex) {
+            btn.classList.add("option--correct");
+            btn.appendChild(makeMark("✓"));
+          }
+          if (idx === answer.chosen && !answer.correct) {
+            btn.classList.add("option--wrong");
+            btn.appendChild(makeMark("✗"));
+          }
+        } else {
+          btn.addEventListener("click", () => choose(idx));
+        }
+
+        el.options.appendChild(btn);
+      });
+    }
+
+    function makeMark(symbol) {
+      const m = document.createElement("span");
+      m.className = "option__mark";
+      m.textContent = symbol;
+      return m;
+    }
+
+    function revealSolution(q) {
+      el.solutionAnswer.textContent = `Correct answer: ${q.options[q.correctIndex]}`;
+      el.solutionExplanation.textContent =
+        typeof q.explanation === "string" ? q.explanation : "";
+      el.solution.hidden = false;
+    }
+
+    // ---------------------------------------------------------------- actions
+
+    function choose(idx) {
+      const i = state.current;
+      if (state.answers[i]) return; // already answered — never re-score
+
+      const q = state.deck[i];
+      state.answers[i] = { chosen: idx, correct: idx === q.correctIndex };
+      render();
+    }
+
+    function go(delta) {
+      const next = state.current + delta;
+      if (next < 0 || next >= state.deck.length) return;
+      state.current = next;
+      render();
+    }
+
+    function backToLoader() {
+      el.quiz.hidden = true;
+      el.loader.hidden = false;
+      el.fileInput.value = ""; // allow re-selecting the same filename
+      clearLoaderError();
+    }
+
+    // ---------------------------------------------------------------- events
+
+    el.fileInput.addEventListener("change", (e) => {
+      loadFromFile(e.target.files[0]);
+    });
+
+    el.sampleBtn.addEventListener("click", () => {
+      loadFromText(el.sampleData.textContent, "sample");
+    });
+
+    el.loadBtn.addEventListener("click", backToLoader);
+    el.prevBtn.addEventListener("click", () => go(-1));
+    el.nextBtn.addEventListener("click", () => go(1));
+    el.restartBtn.addEventListener("click", startNewDeck);
+
+    document.addEventListener("keydown", (e) => {
+      if (el.quiz.hidden) return;
+      if (e.key === "ArrowLeft") go(-1);
+      else if (e.key === "ArrowRight") go(1);
+    });
+
+    // Drag & drop onto the loader card.
+    ["dragenter", "dragover"].forEach((evt) =>
+      el.loader.addEventListener(evt, (e) => {
+        e.preventDefault();
+        el.loader.classList.add("is-dragging");
+      })
+    );
+    ["dragleave", "drop"].forEach((evt) =>
+      el.loader.addEventListener(evt, (e) => {
+        e.preventDefault();
+        el.loader.classList.remove("is-dragging");
+      })
+    );
+    el.loader.addEventListener("drop", (e) => {
+      const file = e.dataTransfer && e.dataTransfer.files[0];
+      loadFromFile(file);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1342 @@
+{
+  "meta": {
+    "title": "CTL / LTL & Automata — Practice",
+    "course": "Formal Methods (Sebastiani, Univ. of Trento)",
+    "generatedAt": "2026-06-05T09:04:04.300Z",
+    "count": 110,
+    "countsByType": {
+      "ctl_model": 72,
+      "buchi": 21,
+      "ltl_ctl_expressibility": 17
+    },
+    "answerBalance": {
+      "Yes": 22,
+      "True": 36,
+      "False": 36,
+      "No": 16
+    },
+    "note": "CTL verdicts were computed by a fair-CTL model checker; each existence claim carries a verified witness path/lasso. Buchi and expressibility items are from a hand-verified bank."
+  },
+  "questions": [
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  GFq ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — \"infinitely often q\" is expressible: GFq is equivalent to the CTL formula AGAFq.",
+      "id": "q001"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ EG p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s2}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the fair path (s0 → s2)ω keeps p true forever.",
+      "id": "q002"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ E(q U p)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — along s0 → s2, q holds until p becomes true at s2.",
+      "id": "q003"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  Fp ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — Fp is equivalent to the CTL formula AFp.",
+      "id": "q004"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EX p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no successor of s0 satisfies p.",
+      "id": "q005"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ EF ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M98.5,81.8 Q170.0,127.5 241.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,163 C230,125 290,125 268,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M98.5,173.2 Q170.0,127.5 241.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s1,s2,s3}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the fair path s0 reaches a state where ¬q holds.",
+      "id": "q006"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  Xp ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — Xp is equivalent to the CTL formula AXp.",
+      "id": "q007"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AF ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M80.0,92.0 Q80.0,127.5 80.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,185.0 Q170.0,185.0 238.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,163 C50,125 110,125 88,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — every path from s0 eventually reaches a state where ¬q holds.",
+      "id": "q008"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AX ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — every successor of s0 satisfies ¬q.",
+      "id": "q009"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EG ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,163.0 Q260.0,127.5 260.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,185.0 Q170.0,185.0 238.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no path from s0 can keep ¬q true forever.",
+      "id": "q010"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the initial state s0 is labelled (p,q), so p holds there.",
+      "id": "q011"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AX p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M80.0,92.0 Q54.0,127.5 80.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,81.8 Q156.0,105.6 98.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M80.0,163.0 Q54.0,127.5 80.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M98.5,173.2 Q156.0,105.6 241.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — every successor of s0 satisfies p.",
+      "id": "q012"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  GFp ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — GFp (\"infinitely often p\") is equivalent to the CTL formula AGAFp.",
+      "id": "q013"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  FGp ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — FGp has no equivalent CTL formula (AFAGp is not equivalent to it).",
+      "id": "q014"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  qUp .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">q</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">p</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — the initial state loops only on q and exits to the accepting sink on p, so acceptance ⇔ q holds up to the first p = qUp.",
+      "id": "q015"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ AG q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0}  F2={s0,s1,s2}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — the path s0 → s1 reaches s1 where q fails.",
+      "id": "q016"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  GFq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">¬q</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">q</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">q</text><path d=\"M214.0,90.0 Q175.0,64.0 136.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"60.0\" text-anchor=\"middle\">¬q</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — the accepting state is entered exactly on q and left on ¬q, so it is visited infinitely often ⇔ q holds infinitely often = GFq.",
+      "id": "q017"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AX ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,92.0 Q260.0,127.5 260.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,163 C230,125 290,125 268,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,185.0 Q170.0,159.0 102.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,185.0 Q170.0,159.0 238.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — every successor of s0 satisfies ¬q.",
+      "id": "q018"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  Fq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">q</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — the run idles in the non-accepting state on any letter and can only reach the accepting sink via a q-edge, so acceptance ⇔ at least one q occurs = Fq.",
+      "id": "q019"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AG p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q194.5,111.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q194.5,111.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — the path s0 reaches s0 where p fails.",
+      "id": "q020"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — s0 is labelled (p,q), so ¬q does not hold there.",
+      "id": "q021"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AG ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M80.0,92.0 Q80.0,127.5 80.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M98.5,173.2 Q170.0,127.5 241.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — the path s0 → s3 reaches s3 where ¬p fails.",
+      "id": "q022"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EX q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M80.0,92.0 Q80.0,127.5 80.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,185.0 Q170.0,185.0 102.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M98.5,173.2 Q170.0,127.5 241.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — s0 has a successor s1 where q holds.",
+      "id": "q023"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  Fq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">p</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">q</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — before the first q the initial state loops only on p (language pUq); Fq allows ¬p∧¬q before q, e.g. (¬p∧¬q)·qω, which is rejected here.",
+      "id": "q024"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  Fp .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">p</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — the run idles on any letter and reaches the accepting sink only via a p-edge, so acceptance ⇔ p occurs at least once = Fp.",
+      "id": "q025"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ E(¬q U p)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s1}  F2={s0,s1,s2}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — there is no fair path on which ¬q holds continuously until p.",
+      "id": "q026"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ E(p U q)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — there is no path on which p holds continuously until q.",
+      "id": "q027"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  ⊤ U (Gq) ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — ⊤ U (Gq) simplifies to F(Gq) = FGq, which has no equivalent CTL formula.",
+      "id": "q028"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ EF q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s1,s2}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the fair path s0 → s2 reaches a state where q holds.",
+      "id": "q029"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EG ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,92.0 Q260.0,127.5 260.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,81.8 Q170.0,127.5 98.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M80.0,163.0 Q80.0,127.5 80.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no path from s0 can keep ¬q true forever.",
+      "id": "q030"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ A(¬q U p)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,92.0 Q260.0,127.5 260.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,81.8 Q156.0,105.6 98.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,163 C230,125 290,125 268,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,163 C50,125 110,125 88,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M98.5,173.2 Q156.0,105.6 241.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — along s0 → s1, p stays false but ¬q fails first at s1, breaking ¬q U p.",
+      "id": "q031"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  FGp → q ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — it rewrites to GF¬p ∨ q, equivalent to the CTL formula AGAF¬p ∨ q.",
+      "id": "q032"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  Gq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">q</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — a single q already leads to acceptance (language Fq); Gq would require q at every step.",
+      "id": "q033"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  GFp → q ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — it rewrites to FG¬p ∨ q; the FG part is not expressible in CTL, so no equivalent CTL formula exists.",
+      "id": "q034"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  Gq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M142,64 C118,26 182,26 158,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"150\" y=\"30\" text-anchor=\"middle\">q</text><path d=\"M92,90 L122,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"150\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"150\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — one accepting state looping only on q: a run exists iff every letter satisfies q = Gq.",
+      "id": "q035"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EG p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no path from s0 can keep p true forever.",
+      "id": "q036"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  Gp ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — Gp is equivalent to the CTL formula AGp.",
+      "id": "q037"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M98.5,81.8 Q170.0,127.5 241.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,81.8 Q170.0,127.5 98.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,163.0 Q260.0,127.5 260.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,185.0 Q170.0,185.0 238.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,163 C50,125 110,125 88,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — s0 is labelled (p,q), so ¬p does not hold there.",
+      "id": "q038"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ E(¬p U q)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q194.5,111.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q194.5,111.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — q already holds at s0, so E(¬p U q) is satisfied immediately.",
+      "id": "q039"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ EX p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s1}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no successor of s0 satisfies p with a fair continuation.",
+      "id": "q040"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AG ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — ¬p holds in every reachable state.",
+      "id": "q041"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  Fp .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M142,64 C118,26 182,26 158,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"150\" y=\"30\" text-anchor=\"middle\">p</text><path d=\"M92,90 L122,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"150\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"150\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — this automaton accepts a word iff p holds at every step (its language is Gp). Fp also accepts words where p holds only later, e.g. ¬p then pω, which this automaton rejects.",
+      "id": "q042"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AX q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — s0 has a successor s0 where q fails.",
+      "id": "q043"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ EF ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the fair path s0 reaches a state where ¬q holds.",
+      "id": "q044"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EF ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,163 C230,125 290,125 268,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,185.0 Q170.0,185.0 102.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M80.0,163.0 Q80.0,127.5 80.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no reachable state satisfies ¬p.",
+      "id": "q045"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ AX q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,92.0 Q260.0,127.5 260.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,163 C50,125 110,125 88,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — s0 has a successor s0 where q fails.",
+      "id": "q046"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AF ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,163 C50,125 110,125 88,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — every path from s0 eventually reaches a state where ¬p holds.",
+      "id": "q047"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EF ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no reachable state satisfies ¬q.",
+      "id": "q048"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EFEG ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,92.0 Q260.0,127.5 260.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,81.8 Q170.0,127.5 98.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,185.0 Q170.0,185.0 102.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M80.0,163.0 Q80.0,127.5 80.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no reachable state can sustain ¬p forever.",
+      "id": "q049"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ E(¬p U q)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — q already holds at s0, so E(¬p U q) is satisfied immediately.",
+      "id": "q050"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EF ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M98.5,81.8 Q170.0,127.5 241.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,92.0 Q260.0,127.5 260.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,163 C230,125 290,125 268,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M98.5,173.2 Q170.0,127.5 241.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the path s0 → s2 reaches a state where ¬q holds.",
+      "id": "q051"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  F(Gq) ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — F(Gq) is just FGq, which is not expressible in CTL.",
+      "id": "q052"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  FGq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">q</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">q</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — to be accepted the run must eventually enter the accepting state, which loops only on q, so from some point on every letter is q = FGq.",
+      "id": "q053"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EFEG ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — from s0 the path (s0 → s2 → s1)ω keeps ¬p true forever.",
+      "id": "q054"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  Xq ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — Xq is equivalent to the CTL formula AXq.",
+      "id": "q055"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AX q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — s0 has a successor s2 where q fails.",
+      "id": "q056"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AG q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M80.0,92.0 Q80.0,127.5 80.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,185.0 Q170.0,185.0 238.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — the path s0 reaches s0 where q fails.",
+      "id": "q057"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ E(¬p U ¬q)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — ¬q already holds at s0, so E(¬p U ¬q) is satisfied immediately.",
+      "id": "q058"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  G(Fp) ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — G(Fp) is just GFp, equivalent to AGAFp.",
+      "id": "q059"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ A(p U ¬q)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1,s2}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — on every fair path p holds until ¬q.",
+      "id": "q060"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  Gp .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M142,64 C118,26 182,26 158,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"150\" y=\"30\" text-anchor=\"middle\">p</text><path d=\"M92,90 L122,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"150\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"150\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — the single state is accepting and loops only on p, so an accepting run exists iff every letter satisfies p. That is exactly Gp.",
+      "id": "q061"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ E(q U p)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q194.5,111.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q194.5,111.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — p already holds at s0, so E(q U p) is satisfied immediately.",
+      "id": "q062"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — s0 is labelled (p,¬q), so ¬p does not hold there.",
+      "id": "q063"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  GFp .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">¬p</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">p</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">p</text><path d=\"M214.0,90.0 Q175.0,64.0 136.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"60.0\" text-anchor=\"middle\">¬p</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — the accepting state is entered on p and left on ¬p, so it recurs infinitely often ⇔ p holds infinitely often = GFp.",
+      "id": "q064"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ EFEG p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1}  F2={s0}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no fair reachable state can sustain p forever.",
+      "id": "q065"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ AGAF ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q194.5,111.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q194.5,111.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1,s2}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — on every fair path, ¬q keeps recurring from every reachable state (it holds infinitely often).",
+      "id": "q066"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  FGp .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">p</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">p</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — acceptance forces the run into the accepting state that loops only on p, i.e. p eventually holds forever = FGp.",
+      "id": "q067"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ AX ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — s0 has a successor s1 where ¬q fails.",
+      "id": "q068"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ A(q U p)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1,s2}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — on every fair path q holds until p.",
+      "id": "q069"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EFEG ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,81.8 Q156.0,105.6 98.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M98.5,173.2 Q156.0,105.6 241.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no reachable state can sustain ¬q forever.",
+      "id": "q070"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  pUq ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — the LTL formula pUq is equivalent to the CTL formula A(pUq).",
+      "id": "q071"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EX ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M80.0,92.0 Q54.0,127.5 80.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,81.8 Q170.0,127.5 98.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,163.0 Q260.0,127.5 260.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,163 C230,125 290,125 268,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M80.0,163.0 Q54.0,127.5 80.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — s0 has a successor s1 where ¬q holds.",
+      "id": "q072"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EG q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no path from s0 can keep q true forever.",
+      "id": "q073"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the initial state s0 is labelled (¬p,q), so ¬p holds there.",
+      "id": "q074"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ EG ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M98.5,81.8 Q170.0,127.5 241.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,81.8 Q170.0,127.5 98.5,173.2\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,185.0 Q170.0,185.0 102.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,163.0 Q260.0,127.5 260.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M80.0,163.0 Q80.0,127.5 80.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s3}  F2={s1,s2}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the fair path (s0 → s2 → s3)ω keeps ¬q true forever.",
+      "id": "q075"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  GFq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">q</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">q</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — it requires q continuously from some point on (language FGq); (q·¬q)ω is in GFq but rejected here.",
+      "id": "q076"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EX q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q194.5,111.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q194.5,111.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — s0 has a successor s0 where q holds.",
+      "id": "q077"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AX ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — s0 has a successor s1 where ¬p fails.",
+      "id": "q078"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AGAF q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M80.0,92.0 Q54.0,127.5 80.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,163 C230,125 290,125 268,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,185.0 Q170.0,185.0 102.0,185.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M80.0,163.0 Q54.0,127.5 80.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — on every path, q keeps recurring from every reachable state (it holds infinitely often).",
+      "id": "q079"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  Gq ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — Gq is equivalent to the CTL formula AGq.",
+      "id": "q080"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EF ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,92.0 Q260.0,127.5 260.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M98.5,173.2 Q170.0,127.5 241.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,163 C50,125 110,125 88,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no reachable state satisfies ¬q.",
+      "id": "q081"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EG ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the path (s0 → s2)ω keeps ¬q true forever.",
+      "id": "q082"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AG ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — ¬q holds in every reachable state.",
+      "id": "q083"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  Fp .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">q</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">p</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — before the first p only q is allowed (language qUp); Fp would also accept (¬p∧¬q)·pω, rejected here.",
+      "id": "q084"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — s0 is labelled (p,q), so ¬p does not hold there.",
+      "id": "q085"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  Gp .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M142,64 C118,26 182,26 158,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"150\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M92,90 L122,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"150\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"150\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — it accepts every word (the accepting state loops on any letter); Gp fails on any word containing ¬p.",
+      "id": "q086"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EX ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no successor of s0 satisfies ¬q.",
+      "id": "q087"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ AG ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — the path s0 reaches s0 where ¬p fails.",
+      "id": "q088"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  FGq ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — \"eventually permanently q\" (FGq) has no equivalent CTL formula. The natural candidate AFAGq is strictly stronger, and no CTL formula captures FGq.",
+      "id": "q089"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ AG q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,163 C230,125 290,125 268,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M98.5,173.2 Q170.0,127.5 241.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M72,163 C50,125 110,125 88,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1,s3}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — q holds in every fair reachable state.",
+      "id": "q090"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ EX ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q194.5,111.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q194.5,111.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s1}  F2={s0,s1,s2}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no successor of s0 satisfies ¬p with a fair continuation.",
+      "id": "q091"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  pUq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">p</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">q</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — the run stays in the initial state only on p and must take a q-edge into the accepting sink, so acceptance ⇔ p holds up to the first q = pUq.",
+      "id": "q092"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  GFq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">q</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — one q suffices for acceptance (language Fq); GFq requires infinitely many q's.",
+      "id": "q093"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EX ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q194.5,111.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q194.5,111.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no successor of s0 satisfies ¬p.",
+      "id": "q094"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  pUq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M142,64 C118,26 182,26 158,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"150\" y=\"30\" text-anchor=\"middle\">p</text><path d=\"M92,90 L122,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"150\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"150\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — it never reads q and accepts exactly the all-p words (Gp), whereas pUq requires q to eventually hold.",
+      "id": "q095"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  ⊥ R (Fq) ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — ⊥ R (Fq) simplifies to G(Fq) = GFq, equivalent to AGAFq.",
+      "id": "q096"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  FGq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M142,64 C118,26 182,26 158,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"150\" y=\"30\" text-anchor=\"middle\">⊤</text><path d=\"M92,90 L122,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"150\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"150\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — the single accepting state loops on every letter, so it accepts every execution; FGq fails for ( ¬q )ω.",
+      "id": "q097"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ AX q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,96.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,96.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0}  F2={s0}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — every successor of s0 satisfies q.",
+      "id": "q098"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EX q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — s0 has a successor s2 where q holds.",
+      "id": "q099"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EG q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M246.4,87.3 Q215.0,127.5 183.6,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no path from s0 can keep q true forever.",
+      "id": "q100"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M162,163 C140,125 200,125 178,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — s0 is labelled (p,q), so ¬q does not hold there.",
+      "id": "q101"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  FGq .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">¬q</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">q</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">q</text><path d=\"M214.0,90.0 Q175.0,64.0 136.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"60.0\" text-anchor=\"middle\">¬q</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — it accepts q at infinitely many but possibly non-consecutive positions (language GFq); e.g. (q·¬q)ω is accepted yet is not in FGq.",
+      "id": "q102"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ AG ¬q   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,92.0 Q234.0,127.5 260.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M260.0,163.0 Q234.0,127.5 260.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M98.5,173.2 Q170.0,127.5 241.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1,s2}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — ¬q holds in every fair reachable state.",
+      "id": "q103"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M72,48 C50,10 110,10 88,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the initial state s0 is labelled (p,¬q), so p holds there.",
+      "id": "q104"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EF p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q125.0,127.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M183.6,167.7 Q215.0,127.5 246.4,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — the path s0 reaches a state where p holds.",
+      "id": "q105"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ A(q U ¬p)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M80.0,92.0 Q54.0,127.5 80.0,163.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M241.5,173.2 Q170.0,127.5 98.5,81.8\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,163 C230,125 290,125 268,163\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M80.0,163.0 Q54.0,127.5 80.0,92.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"260\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"260\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><circle cx=\"80\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s3</text><text x=\"80\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s2,s3}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — on every fair path q holds until ¬p.",
+      "id": "q106"
+    },
+    {
+      "type": "ltl_ctl_expressibility",
+      "prompt": "Let p, q be Boolean atoms. Does there exist a CTL formula expressing the same property as the LTL formula  Fq ?",
+      "diagramSvg": null,
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yes — Fq is equivalent to the CTL formula AFq.",
+      "id": "q107"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the fair Kripke model M below.\nIs   M ⊨ E(p U ¬q)   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102.0,70.0 Q170.0,70.0 238.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q125.0,127.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">¬p,q</text><text x=\"12\" y=\"242\" fill=\"#b00\" font-size=\"13\">Fairness: F1={s0,s1}</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — there is no fair path on which p holds continuously until ¬q.",
+      "id": "q108"
+    },
+    {
+      "type": "ctl_model",
+      "prompt": "Consider the Kripke model M below.\nIs   M ⊨ EF ¬p   true or false?",
+      "diagramSvg": "<svg viewBox=\"0 0 340 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M93.6,87.3 Q104.5,143.5 156.4,167.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M252,48 C230,10 290,10 268,48\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M238.0,70.0 Q170.0,70.0 102.0,70.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M156.4,167.7 Q104.5,143.5 93.6,87.3\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><path d=\"M25,70 L56,70\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"80\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"80\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s0</text><text x=\"80\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"260\" cy=\"70\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"260\" y=\"75\" text-anchor=\"middle\" font-weight=\"bold\">s1</text><text x=\"260\" y=\"38\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text><circle cx=\"170\" cy=\"185\" r=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"170\" y=\"190\" text-anchor=\"middle\" font-weight=\"bold\">s2</text><text x=\"170\" y=\"225\" text-anchor=\"middle\" fill=\"#1a56b0\">p,¬q</text></svg>",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — no reachable state satisfies ¬p.",
+      "id": "q109"
+    },
+    {
+      "type": "buchi",
+      "prompt": "The Büchi automaton below is claimed to recognize the language of the LTL formula  FGp .\nIs this claim correct?",
+      "diagramSvg": "<svg viewBox=\"0 0 320 170\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"ui-monospace,Menlo,Consolas,monospace\" font-size=\"14\"><defs><marker id=\"ah\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7.5\" refY=\"3\" orient=\"auto\" markerUnits=\"strokeWidth\"><path d=\"M0,0 L8,3 L0,6 Z\" fill=\"#333\"/></marker></defs><path d=\"M102,64 C78,26 142,26 118,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"110\" y=\"30\" text-anchor=\"middle\">¬p</text><path d=\"M136.0,90.0 Q175.0,116.0 214.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"112.0\" text-anchor=\"middle\">p</text><path d=\"M232,64 C208,26 272,26 248,64\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"240\" y=\"30\" text-anchor=\"middle\">p</text><path d=\"M214.0,90.0 Q175.0,64.0 136.0,90.0\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><text x=\"175.0\" y=\"60.0\" text-anchor=\"middle\">¬p</text><path d=\"M52,90 L82,90\" fill=\"none\" stroke=\"#333\" stroke-width=\"1.6\" marker-end=\"url(#ah)\"/><circle cx=\"110\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">A</text><circle cx=\"240\" cy=\"90\" r=\"24\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"19\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"240\" y=\"95\" text-anchor=\"middle\" font-weight=\"bold\">B</text></svg>",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctIndex": 1,
+      "explanation": "No — it accepts p infinitely often but not necessarily continuously (language GFp); (p·¬p)ω is accepted but not in FGp.",
+      "id": "q110"
+    }
+  ]
+}

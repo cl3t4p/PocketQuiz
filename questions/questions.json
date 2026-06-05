@@ -1,0 +1,41 @@
+{
+  "meta": { "title": "CTL/LTL Automata Practice", "count": 4 },
+  "questions": [
+    {
+      "id": "q001",
+      "type": "ctl_model",
+      "prompt": "Is  M ⊨ AG AF ¬p  true or false?\n\nM:  s0 →{p} s1,   s1 →{p} s1  (self-loop)",
+      "diagramSvg": "<svg viewBox='0 0 300 140' xmlns='http://www.w3.org/2000/svg' font-family='monospace' font-size='14'><defs><marker id='a' markerWidth='10' markerHeight='10' refX='8' refY='3' orient='auto'><path d='M0,0 L8,3 L0,6 Z' fill='#4f6bed'/></marker></defs><circle cx='70' cy='70' r='26' fill='none' stroke='#4f6bed' stroke-width='2'/><text x='70' y='66' text-anchor='middle'>s0</text><text x='70' y='82' text-anchor='middle' fill='#1f9d57'>p</text><circle cx='210' cy='70' r='26' fill='none' stroke='#4f6bed' stroke-width='2'/><text x='210' y='66' text-anchor='middle'>s1</text><text x='210' y='82' text-anchor='middle' fill='#1f9d57'>p</text><line x1='98' y1='70' x2='182' y2='70' stroke='#4f6bed' stroke-width='2' marker-end='url(#a)'/><path d='M232,52 A24,24 0 1 1 232,88' fill='none' stroke='#4f6bed' stroke-width='2' marker-end='url(#a)'/></svg>",
+      "options": ["True", "False"],
+      "correctIndex": 1,
+      "explanation": "False. There is a path s0→s1→(s1)^ω where p holds forever, so AF ¬p fails on that path, hence AG AF ¬p does not hold at s0."
+    },
+    {
+      "id": "q002",
+      "type": "ltl_equiv",
+      "prompt": "Are these LTL formulas equivalent?\n\n    G F p   ≡   F G p",
+      "diagramSvg": null,
+      "options": ["Yes", "No"],
+      "correctIndex": 1,
+      "explanation": "No. G F p means \"infinitely often p\"; F G p means \"eventually always p\". F G p implies G F p but not vice versa (e.g. p true at every even step only)."
+    },
+    {
+      "id": "q003",
+      "type": "ctl_operator",
+      "prompt": "Which operator pair are duals?\n\n    AX φ   ≡   ¬ __ ¬φ",
+      "diagramSvg": null,
+      "options": ["EX", "AX", "EF", "EG"],
+      "correctIndex": 0,
+      "explanation": "EX. AX φ ≡ ¬ EX ¬φ: 'all successors satisfy φ' is the negation of 'some successor satisfies ¬φ'."
+    },
+    {
+      "id": "q004",
+      "type": "automata",
+      "prompt": "Does this NFA accept the string  a b a ?\n\nStart q0; accepting q2.",
+      "diagramSvg": "<svg viewBox='0 0 360 120' xmlns='http://www.w3.org/2000/svg' font-family='monospace' font-size='14'><defs><marker id='b' markerWidth='10' markerHeight='10' refX='8' refY='3' orient='auto'><path d='M0,0 L8,3 L0,6 Z' fill='#4f6bed'/></marker></defs><circle cx='50' cy='60' r='22' fill='none' stroke='#4f6bed' stroke-width='2'/><text x='50' y='65' text-anchor='middle'>q0</text><circle cx='180' cy='60' r='22' fill='none' stroke='#4f6bed' stroke-width='2'/><text x='180' y='65' text-anchor='middle'>q1</text><circle cx='310' cy='60' r='22' fill='none' stroke='#4f6bed' stroke-width='2'/><circle cx='310' cy='60' r='17' fill='none' stroke='#4f6bed' stroke-width='1.5'/><text x='310' y='65' text-anchor='middle'>q2</text><line x1='72' y1='60' x2='158' y2='60' stroke='#4f6bed' stroke-width='2' marker-end='url(#b)'/><text x='115' y='52' text-anchor='middle'>a</text><line x1='202' y1='60' x2='288' y2='60' stroke='#4f6bed' stroke-width='2' marker-end='url(#b)'/><text x='245' y='52' text-anchor='middle'>b</text><path d='M298,44 A24,24 0 1 0 322,44' fill='none' stroke='#4f6bed' stroke-width='2' marker-end='url(#b)'/><text x='310' y='8' text-anchor='middle'>a</text></svg>",
+      "options": ["Accepts", "Rejects"],
+      "correctIndex": 0,
+      "explanation": "Accepts. Run: q0 --a--> q1 --b--> q2 --a--> q2 (self-loop on a). Ends in accepting state q2."
+    }
+  ]
+}
